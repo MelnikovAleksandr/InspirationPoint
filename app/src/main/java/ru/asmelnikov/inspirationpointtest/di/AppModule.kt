@@ -7,11 +7,16 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.asmelnikov.inspirationpointtest.data.AppDatabase
+import ru.asmelnikov.inspirationpointtest.data.ReceivedMessageRepositoryImpl
 import ru.asmelnikov.inspirationpointtest.data.SentMessageRepositoryImpl
+import ru.asmelnikov.inspirationpointtest.domain.repository.ReceivedMessagesRepository
 import ru.asmelnikov.inspirationpointtest.domain.repository.SentMessageRepository
-import ru.asmelnikov.inspirationpointtest.domain.usecases.GetAllSentMessagesUseCase
-import ru.asmelnikov.inspirationpointtest.domain.usecases.InsertSentMessageUseCase
-import ru.asmelnikov.inspirationpointtest.domain.usecases.SentMessageUseCases
+import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.GetAllReceivedMessagesUseCase
+import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.InsertReceivedMessageUseCase
+import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.ReceivedMessagesUseCases
+import ru.asmelnikov.inspirationpointtest.domain.usecases.sent_messages.GetAllSentMessagesUseCase
+import ru.asmelnikov.inspirationpointtest.domain.usecases.sent_messages.InsertSentMessageUseCase
+import ru.asmelnikov.inspirationpointtest.domain.usecases.sent_messages.SentMessageUseCases
 import javax.inject.Singleton
 
 @Module
@@ -36,6 +41,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideReceivedRepository(db: AppDatabase): ReceivedMessagesRepository {
+        return ReceivedMessageRepositoryImpl(db.receivedMessageDao())
+    }
+
+    @Provides
+    @Singleton
     fun provideSentUseCases(repository: SentMessageRepository): SentMessageUseCases {
         return SentMessageUseCases(
             InsertSentMessageUseCase(repository),
@@ -43,4 +54,12 @@ object AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun providesReceivedUseCase(repository: ReceivedMessagesRepository): ReceivedMessagesUseCases {
+        return ReceivedMessagesUseCases(
+            InsertReceivedMessageUseCase(repository),
+            GetAllReceivedMessagesUseCase(repository)
+        )
+    }
 }
