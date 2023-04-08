@@ -1,4 +1,4 @@
-package ru.asmelnikov.inspirationpointtest.domain.usecases
+package ru.asmelnikov.inspirationpointtest.domain.usecases.sent_messages
 
 import ru.asmelnikov.inspirationpointtest.domain.model.SentMessageModel
 import ru.asmelnikov.inspirationpointtest.domain.repository.SentMessageRepository

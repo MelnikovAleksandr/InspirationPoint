@@ -3,8 +3,8 @@ package ru.asmelnikov.inspirationpointtest.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "sent")
-data class SentMessageModel(
+@Entity(tableName = "received")
+data class ReceivedMessageModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val timeStamp: String,

@@ -22,9 +22,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/btm_menu" />
 
