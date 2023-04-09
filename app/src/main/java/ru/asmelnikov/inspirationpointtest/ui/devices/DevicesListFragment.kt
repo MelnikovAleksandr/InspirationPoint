@@ -11,6 +11,7 @@ import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import ru.asmelnikov.inspirationpointtest.databinding.FragmentDevicesListBinding
 import ru.asmelnikov.inspirationpointtest.domain.model.DeviceModel
+import java.util.*
 
 @AndroidEntryPoint
 class DevicesListFragment : Fragment() {
@@ -36,10 +37,10 @@ class DevicesListFragment : Fragment() {
         initAdapter()
         savedInstanceState?.let {
             binding.camNameTextView.text = it.getString("name", "")
-            binding.typeTitleTextView.text = it.getString("type", "")
-            binding.statusTitleTextView.text = it.getString("status", "")
-            binding.macTitleTextView.text = it.getString("mac", "")
-            binding.subscriprionTitleTextView.text = it.getString("subscriptions", "")
+            binding.typeTitle.text = it.getString("type", "")
+            binding.statusTitle.text = it.getString("status", "")
+            binding.macTitle.text = it.getString("mac", "")
+            binding.subscriprionTitle.text = it.getString("subscriptions", "")
         }
 
         viewModel.allDevices.observe(this.viewLifecycleOwner) { devices ->
@@ -49,6 +50,34 @@ class DevicesListFragment : Fragment() {
                     viewModel.insertDevices(fakeDev)
                 } else devicesAdapter.differ.submitList(devices)
             }
+
+            // filter chips
+            var currentStatus: String
+
+            val chipGroup = binding.chipGroup
+            val status = devices.distinctBy { it.status }.map { it.status }
+            for (statuses in status) {
+                val chip = Chip(this.requireContext())
+                chip.text =
+                    statuses.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+                chip.isCheckable = true
+                chipGroup.addView(chip)
+
+                chip.setOnClickListener {
+                    currentStatus = statuses
+                    if (chip.isChecked) {
+                        updateDeviceList(
+                            devices.filter {
+                                it.status == currentStatus
+                            }
+                        )
+                    } else devicesAdapter.differ.submitList(devices)
+                }
+                binding.chipAll.isChecked = true
+                binding.chipAll.setOnClickListener {
+                    devicesAdapter.differ.submitList(devices)
+                }
+            }
         }
     }
 
@@ -57,10 +86,10 @@ class DevicesListFragment : Fragment() {
             override fun onDeviceInfo(device: DeviceModel) {
                 binding.apply {
                     camNameTextView.text = device.name
-                    typeTitleTextView.text = "Type: ${device.type}"
-                    statusTitleTextView.text = "Status: ${device.status}"
-                    macTitleTextView.text = "MAC: ${device.mac}"
-                    subscriprionTitleTextView.text = "Subscription: ${device.subscriptions}"
+                    typeTitle.text = device.type
+                    statusTitle.text = device.status
+                    macTitle.text = device.mac
+                    subscriprionTitle.text = device.subscriptions
                 }
             }
         })
@@ -70,13 +99,17 @@ class DevicesListFragment : Fragment() {
         }
     }
 
+    private fun updateDeviceList(filteredList: List<DeviceModel>) {
+        devicesAdapter.differ.submitList(filteredList)
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("name", binding.camNameTextView.text.toString())
-        outState.putString("type", binding.typeTitleTextView.text.toString())
-        outState.putString("status", binding.statusTitleTextView.text.toString())
-        outState.putString("mac", binding.macTitleTextView.text.toString())
-        outState.putString("subscriptions", binding.subscriprionTitleTextView.text.toString())
+        outState.putString("type", binding.typeTitle.text.toString())
+        outState.putString("status", binding.statusTitle.text.toString())
+        outState.putString("mac", binding.macTitle.text.toString())
+        outState.putString("subscriptions", binding.subscriprionTitle.text.toString())
     }
 
     override fun onDestroyView() {

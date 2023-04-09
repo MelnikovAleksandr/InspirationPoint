@@ -19,13 +19,19 @@
         app:navGraph="@navigation/nav_graph"
         tools:ignore="FragmentTagUsage" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        android:background="@color/black" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingBottom="16dp"
+        android:paddingBottom="14dp"
         android:clipToPadding="false"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/btm_menu" />
