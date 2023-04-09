@@ -55,7 +55,7 @@ class MessagesFragment : Fragment() {
                 } else {
                     val sentMessage = createMessage(recepient, content)
                     insertMessage(sentMessage)
-                    sentRecyclerView.smoothScrollToPosition(sentRecyclerView.adapter!!.itemCount + 3)
+                    sentRecyclerView.smoothScrollToPosition(sentRecyclerView.adapter!!.itemCount + 1)
                     recepientEditText.text = null
                     textEditText.text = null
                 }

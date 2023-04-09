@@ -1,9 +1,6 @@
 package ru.asmelnikov.inspirationpointtest.ui.devices
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.asmelnikov.inspirationpointtest.domain.model.DeviceModel
@@ -15,9 +12,28 @@ class DevicesViewModel @Inject constructor(
     private val devicesUseCases: DevicesUseCases
 ) : ViewModel() {
 
+    private val _devicesLiveData = MutableLiveData<List<DeviceModel>>()
+    private val _selectedStatus = MutableLiveData<String?>()
+    private val _selectedDevice = MutableLiveData<DeviceModel?>()
+    val devicesLiveData get() = _devicesLiveData
+    val selectedStatus get() = _selectedStatus
+    val selectedDevice: LiveData<DeviceModel?> = _selectedDevice
+
     val allDevices: LiveData<List<DeviceModel>> =
         devicesUseCases.getAllDevicesUseCase().asLiveData()
 
+    fun saveDeviceSelection(device: DeviceModel) {
+        _selectedDevice.value = device
+    }
+    fun filterDevices(devices: List<DeviceModel>, status: String?) {
+        if (status != null) {
+            _devicesLiveData.value = devices.filter { it.status == status }
+            _selectedStatus.value = status
+        } else {
+            _devicesLiveData.value = devices
+            _selectedStatus.value = null
+        }
+    }
     fun insertDevices(devices: List<DeviceModel>) {
         viewModelScope.launch {
             devicesUseCases.insertDevicesUseCase(devices)
