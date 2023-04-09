@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Devices List"
+            android:text="@string/devices_list"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <View
@@ -35,51 +36,18 @@
                 android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:singleSelection="true"
                 android:layout_marginVertical="8dp"
-                app:singleLine="true">
+                android:checkableBehavior="single"
+                app:singleLine="true"
+                app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_all"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_live"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Live" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_approved"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Approved" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_mute"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mute" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_blocked"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Blocked" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_dead"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dead" />
+                    android:text="@string/all"
+                    android:textColor="@color/black" />
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -102,35 +70,40 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name"
+                android:text="@string/name"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Type"
+                android:text="@string/type"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Status"
+                android:text="@string/status"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="MAC"
+                android:text="@string/mac"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Subscriptions"
+                android:text="@string/subscriptions"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -157,46 +130,93 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
+                android:text="@string/device_name"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Cam-5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/type_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:text="Type: "
+                android:text="@string/type_check"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cam_name_text_view" />
+
+            <TextView
+                android:id="@+id/type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/type_title_text_view"
+                app:layout_constraintStart_toEndOf="@id/type_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/type_title_text_view"
+                tools:text="Camera" />
 
             <TextView
                 android:id="@+id/status_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:text="Status: "
+                android:text="@string/status_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/type_title_text_view" />
+
+            <TextView
+                android:id="@+id/status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="8dp"
+                android:textColor="@color/purple_700"
+                app:layout_constraintBottom_toBottomOf="@id/status_title_text_view"
+                app:layout_constraintStart_toEndOf="@id/status_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/status_title_text_view"
+                tools:text="live" />
 
             <TextView
                 android:id="@+id/mac_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:text="MAC: "
+                android:text="@string/mac_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/status_title_text_view" />
+
+            <TextView
+                android:id="@+id/mac_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/mac_title_text_view"
+                app:layout_constraintStart_toEndOf="@id/mac_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/mac_title_text_view"
+                tools:text="fe:fe:F3:fe" />
 
             <TextView
                 android:id="@+id/subscriprion_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:text="Subscriptions: "
+                android:text="@string/subscriptions_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mac_title_text_view" />
+
+            <TextView
+                android:id="@+id/subscriprion_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="8dp"
+                android:textColor="@color/purple_700"
+                app:layout_constraintBottom_toBottomOf="@id/subscriprion_title_text_view"
+                app:layout_constraintStart_toEndOf="@id/subscriprion_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/subscriprion_title_text_view"
+                tools:text="Subscriptions: " />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_layout"
@@ -211,7 +231,9 @@
                     android:id="@+id/text_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:maxLength="100" />
+                    android:hint="@string/enter_the_text"
+                    android:maxLength="100"
+                    android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -219,7 +241,7 @@
                 android:id="@+id/sent_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Send"
+                android:text="@string/sent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_layout" />
 

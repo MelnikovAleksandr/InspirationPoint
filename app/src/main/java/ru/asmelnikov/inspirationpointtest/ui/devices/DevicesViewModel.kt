@@ -15,11 +15,6 @@ class DevicesViewModel @Inject constructor(
     private val devicesUseCases: DevicesUseCases
 ) : ViewModel() {
 
-    init {
-        val devices = insertFakeDevices()
-        insertDevices(devices)
-    }
-
     val allDevices: LiveData<List<DeviceModel>> =
         devicesUseCases.getAllDevicesUseCase().asLiveData()
 
@@ -67,7 +62,7 @@ class DevicesViewModel @Inject constructor(
                 id = 5,
                 name = "Cam-5",
                 type = "Camera",
-                status = "live",
+                status = "blocked",
                 mac = "fe:fe:F3:fe",
                 subscriptions = "SM-03"
             ),
@@ -91,7 +86,7 @@ class DevicesViewModel @Inject constructor(
                 id = 8,
                 name = "Dmitrii",
                 type = "Participant",
-                status = "approved",
+                status = "blocked",
                 mac = "fe:fe:F3:fe",
                 subscriptions = "no"
             )

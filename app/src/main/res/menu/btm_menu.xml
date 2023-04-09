@@ -3,10 +3,10 @@
 
     <item
         android:id="@+id/messagesFragment"
-        android:title="Messages" />
+        android:title="@string/messages" />
 
     <item
         android:id="@+id/devicesListFragment"
-        android:title="Devs" />
+        android:title="@string/devices" />
 
 </menu>

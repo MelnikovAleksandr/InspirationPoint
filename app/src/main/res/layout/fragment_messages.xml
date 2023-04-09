@@ -16,8 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="24dp"
-            android:text="Messages"
+            android:text="@string/messages"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -37,7 +38,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="@string/user_name"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -45,19 +47,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:paddingHorizontal="8dp"
                 android:textColor="@color/purple_700"
                 tools:text="Dmitriy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Period: "
+                android:text="@string/period"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/period_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
                 android:textColor="@color/purple_700"
                 tools:text="Today" />
 
@@ -74,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Received"
+            android:text="@string/received"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -87,35 +93,40 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="#"
+                android:text="@string/number"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Time"
+                android:text="@string/time"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Date"
+                android:text="@string/date"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Author"
+                android:text="@string/author"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="Text"
+                android:text="@string/text"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -138,7 +149,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Sent"
+            android:text="@string/sent"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -151,35 +163,40 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="#"
+                android:text="@string/number"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Time"
+                android:text="@string/time"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Date"
+                android:text="@string/date"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Recepient"
+                android:text="@string/recepient"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="Text"
+                android:text="@string/text"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -202,7 +219,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="New"
+            android:text="@string/new_message"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -217,7 +235,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recepient"
+                android:text="@string/recepient"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -235,9 +254,11 @@
                     android:id="@+id/recepient_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/enter_recepient"
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
-                    android:maxLength="15" />
+                    android:maxLength="15"
+                    android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -261,7 +282,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="Text"
+                    android:text="@string/text"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -270,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="Send" />
+                    android:text="@string/sent" />
 
             </LinearLayout>
 
@@ -291,7 +313,9 @@
                         android:id="@+id/text_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLength="100" />
+                        android:hint="@string/enter_the_text"
+                        android:maxLength="100"
+                        android:textSize="12sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

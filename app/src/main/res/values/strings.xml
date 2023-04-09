@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">InspirationpointTest</string>
+    <string name="devices_list">Devices List</string>
+    <string name="all">All</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="status">Status</string>
+    <string name="mac">MAC</string>
+    <string name="subscriptions">Subscriptions</string>
+    <string name="sent">Sent</string>
+    <string name="enter_the_text">Enter the text…</string>
+    <string name="enter_recepient">Enter recipient…</string>
+    <string name="messages">Messages</string>
+    <string name="user_name">Name:</string>
+    <string name="period">Period:</string>
+    <string name="received">Received</string>
+    <string name="number">#</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="author">Author</string>
+    <string name="text">Text</string>
+    <string name="recepient">Recepient</string>
+    <string name="new_message">New</string>
+    <string name="type_check">Type:</string>
+    <string name="status_title">Status:</string>
+    <string name="mac_title">MAC:</string>
+    <string name="subscriptions_title">Subscriptions:</string>
+    <string name="device_name">Device name</string>
+    <string name="today">Today</string>
+    <string name="devices">Devices</string>
+
 </resources>

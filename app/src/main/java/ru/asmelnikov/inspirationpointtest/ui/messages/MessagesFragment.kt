@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import ru.asmelnikov.inspirationpointtest.R
 import ru.asmelnikov.inspirationpointtest.databinding.FragmentMessagesBinding
 import ru.asmelnikov.inspirationpointtest.domain.model.ReceivedMessageModel
 import ru.asmelnikov.inspirationpointtest.domain.model.SentMessageModel
@@ -44,7 +45,7 @@ class MessagesFragment : Fragment() {
 
         binding.apply {
             nameTextView.text = USER
-            periodTextView.text = "Today"
+            periodTextView.text = getString(R.string.today)
             sentButton.setOnClickListener {
                 val recepient = recepientEditText.text.toString()
                 val content = textEditText.text.toString()
@@ -54,7 +55,7 @@ class MessagesFragment : Fragment() {
                 } else {
                     val sentMessage = createMessage(recepient, content)
                     insertMessage(sentMessage)
-                    sentRecyclerView.smoothScrollToPosition(sentRecyclerView.adapter!!.itemCount + 1)
+                    sentRecyclerView.smoothScrollToPosition(sentRecyclerView.adapter!!.itemCount + 3)
                     recepientEditText.text = null
                     textEditText.text = null
                 }
@@ -183,7 +184,7 @@ class MessagesFragment : Fragment() {
     }
 
     private fun showErrorToast(context: Context) {
-        Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Fill in all fields, please", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
