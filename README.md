@@ -9,8 +9,7 @@
 На экране DevicesList по тапу на устройстве должна отображаться ниже информация об устройстве.
 Компоновка UI-элементов дана ориентировочная, конечное взаимное расположение элементов и их размеры – на усмотрение исполнителя. 
 
-<img src="https://user-images.githubusercontent.com/83123472/230777097-4f8b6df3-db43-40ca-8ec6-1b55fd37057b.jpg" width="200">
-<img src="https://user-images.githubusercontent.com/83123472/230777098-e7dd8a1d-6e77-4651-8236-2d4ee0e99124.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/83123472/230777097-4f8b6df3-db43-40ca-8ec6-1b55fd37057b.jpg" width="200"><img src="https://user-images.githubusercontent.com/83123472/230777098-e7dd8a1d-6e77-4651-8236-2d4ee0e99124.jpg" width="200">
 
 
 https://user-images.githubusercontent.com/83123472/230777410-53b653bb-43c3-4c1a-ba3e-fcfbb3f0127e.mp4
