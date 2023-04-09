@@ -1,4 +1,4 @@
-package ru.asmelnikov.inspirationpointtest.ui
+package ru.asmelnikov.inspirationpointtest.ui.messages
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

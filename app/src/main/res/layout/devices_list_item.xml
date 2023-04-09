@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
+    android:background="@drawable/device_item_selector"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="@color/purple_700"
+        android:textStyle="bold"
+        tools:text="Cam-5" />
+
+    <TextView
+        android:id="@+id/type_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="@color/purple_700"
+        android:textStyle="bold"
+        tools:text="Camera" />
+
+    <TextView
+        android:id="@+id/status_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textStyle="bold"
+        tools:text="live" />
+
+    <TextView
+        android:id="@+id/mac_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textStyle="bold"
+        tools:text="fe:fe:F3:fe" />
+
+    <TextView
+        android:id="@+id/subscriptions_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:textStyle="bold"
+        tools:text="SM-03" />
+
+</LinearLayout>

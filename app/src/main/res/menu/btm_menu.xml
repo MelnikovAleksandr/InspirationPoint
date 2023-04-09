@@ -5,4 +5,8 @@
         android:id="@+id/messagesFragment"
         android:title="Messages" />
 
+    <item
+        android:id="@+id/devicesListFragment"
+        android:title="Devs" />
+
 </menu>

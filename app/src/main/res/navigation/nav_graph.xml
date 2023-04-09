@@ -2,10 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/messagesFragment2">
+    app:startDestination="@id/messagesFragment">
 
     <fragment
-        android:id="@+id/messagesFragment2"
-        android:name="ru.asmelnikov.inspirationpointtest.ui.MessagesFragment"
+        android:id="@+id/messagesFragment"
+        android:name="ru.asmelnikov.inspirationpointtest.ui.messages.MessagesFragment"
         android:label="MessagesFragment" />
+    <fragment
+        android:id="@+id/devicesListFragment"
+        android:name="ru.asmelnikov.inspirationpointtest.ui.devices.DevicesListFragment"
+        android:label="DevicesListFragment" />
 </navigation>
