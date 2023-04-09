@@ -7,10 +7,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.asmelnikov.inspirationpointtest.data.AppDatabase
+import ru.asmelnikov.inspirationpointtest.data.DeviceRepositoryImpl
 import ru.asmelnikov.inspirationpointtest.data.ReceivedMessageRepositoryImpl
 import ru.asmelnikov.inspirationpointtest.data.SentMessageRepositoryImpl
+import ru.asmelnikov.inspirationpointtest.domain.repository.DeviceRepository
 import ru.asmelnikov.inspirationpointtest.domain.repository.ReceivedMessagesRepository
 import ru.asmelnikov.inspirationpointtest.domain.repository.SentMessageRepository
+import ru.asmelnikov.inspirationpointtest.domain.usecases.devices.DevicesUseCases
+import ru.asmelnikov.inspirationpointtest.domain.usecases.devices.GetAllDevicesUseCase
+import ru.asmelnikov.inspirationpointtest.domain.usecases.devices.InsertDevicesUseCase
 import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.GetAllReceivedMessagesUseCase
 import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.InsertReceivedMessageUseCase
 import ru.asmelnikov.inspirationpointtest.domain.usecases.received_messages.ReceivedMessagesUseCases
@@ -47,6 +52,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun providesDevicesRepository(db: AppDatabase): DeviceRepository {
+        return DeviceRepositoryImpl(db.devicesDao())
+    }
+
+    @Provides
+    @Singleton
     fun provideSentUseCases(repository: SentMessageRepository): SentMessageUseCases {
         return SentMessageUseCases(
             InsertSentMessageUseCase(repository),
@@ -60,6 +71,15 @@ object AppModule {
         return ReceivedMessagesUseCases(
             InsertReceivedMessageUseCase(repository),
             GetAllReceivedMessagesUseCase(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providesDevicesUseCase(repository: DeviceRepository): DevicesUseCases {
+        return DevicesUseCases(
+            GetAllDevicesUseCase(repository),
+            InsertDevicesUseCase(repository)
         )
     }
 }
