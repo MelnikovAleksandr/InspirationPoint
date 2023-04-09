@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,12 +36,15 @@ class DevicesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-        savedInstanceState?.let {
-            binding.camNameTextView.text = it.getString("name", "")
-            binding.typeTitle.text = it.getString("type", "")
-            binding.statusTitle.text = it.getString("status", "")
-            binding.macTitle.text = it.getString("mac", "")
-            binding.subscriprionTitle.text = it.getString("subscriptions", "")
+        viewModel.selectedDevice.observe(this.viewLifecycleOwner) { device ->
+
+            binding.apply {
+                camNameTextView.text = device?.name ?: ""
+                typeTitle.text = device?.type ?: ""
+                statusTitle.text = device?.status ?: ""
+                macTitle.text = device?.mac ?: ""
+                subscriprionTitle.text = device?.subscriptions ?: ""
+            }
         }
 
         viewModel.allDevices.observe(this.viewLifecycleOwner) { devices ->
@@ -51,32 +55,38 @@ class DevicesListFragment : Fragment() {
                 } else devicesAdapter.differ.submitList(devices)
             }
 
-            // filter chips
-            var currentStatus: String
-
             val chipGroup = binding.chipGroup
             val status = devices.distinctBy { it.status }.map { it.status }
             for (statuses in status) {
-                val chip = Chip(this.requireContext())
+                val chip = Chip(requireContext())
                 chip.text =
                     statuses.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
                 chip.isCheckable = true
                 chipGroup.addView(chip)
 
                 chip.setOnClickListener {
-                    currentStatus = statuses
                     if (chip.isChecked) {
-                        updateDeviceList(
-                            devices.filter {
-                                it.status == currentStatus
-                            }
-                        )
-                    } else devicesAdapter.differ.submitList(devices)
+                        viewModel.filterDevices(devices, statuses)
+                    } else if (!chip.isChecked) {
+                        viewModel.filterDevices(devices, null)
+                    } else {
+                        binding.chipAll.isChecked = true
+                        devicesAdapter.differ.submitList(devices)
+                    }
                 }
-                binding.chipAll.isChecked = true
-                binding.chipAll.setOnClickListener {
-                    devicesAdapter.differ.submitList(devices)
+            }
+
+            viewModel.devicesLiveData.observe(viewLifecycleOwner) { filteredDevices ->
+                devicesAdapter.differ.submitList(filteredDevices)
+            }
+
+            viewModel.selectedStatus.observe(viewLifecycleOwner) { selectedStatus ->
+                binding.chipGroup.children.filterIsInstance<Chip>().forEach { chip ->
+                    chip.isChecked = chip.text.toString().lowercase() == selectedStatus?.lowercase()
                 }
+            }
+            binding.chipAll.setOnClickListener {
+                devicesAdapter.differ.submitList(devices)
             }
         }
     }
@@ -84,13 +94,7 @@ class DevicesListFragment : Fragment() {
     private fun initAdapter() {
         devicesAdapter = DevicesAdapter(object : DeviceActionListener {
             override fun onDeviceInfo(device: DeviceModel) {
-                binding.apply {
-                    camNameTextView.text = device.name
-                    typeTitle.text = device.type
-                    statusTitle.text = device.status
-                    macTitle.text = device.mac
-                    subscriprionTitle.text = device.subscriptions
-                }
+                viewModel.saveDeviceSelection(device)
             }
         })
         binding.devicesRecyclerview.apply {
@@ -99,22 +103,8 @@ class DevicesListFragment : Fragment() {
         }
     }
 
-    private fun updateDeviceList(filteredList: List<DeviceModel>) {
-        devicesAdapter.differ.submitList(filteredList)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("name", binding.camNameTextView.text.toString())
-        outState.putString("type", binding.typeTitle.text.toString())
-        outState.putString("status", binding.statusTitle.text.toString())
-        outState.putString("mac", binding.macTitle.text.toString())
-        outState.putString("subscriptions", binding.subscriprionTitle.text.toString())
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
